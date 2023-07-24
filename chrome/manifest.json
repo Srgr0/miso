@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
   "name": "miso",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Open a note or user in another misskey instance.",
   "options_page": "options.html",
-  "permissions": ["storage", "tabs"],
+  "permissions": ["storage", "activeTab"],
   "background": {
     "service_worker": "background.js",
     "action": {}
@@ -12,14 +12,20 @@
   "icons": {
     "16": "images/icon16.png",
     "32": "images/icon32.png",
-    "48": "images/icon48.png"
+    "48": "images/icon48.png",
+    "64": "images/icon64.png",
+    "128": "images/icon128.png",
+    "192": "images/icon192.png"
   },
   "action": {
     "default_title": "Open in your misskey instance",
     "default_icon": {
       "16": "images/icon16.png",
       "32": "images/icon32.png",
-      "48": "images/icon48.png"
+      "48": "images/icon48.png",
+      "64": "images/icon64.png",
+      "128": "images/icon128.png",
+      "192": "images/icon192.png"
     }
   }
 }

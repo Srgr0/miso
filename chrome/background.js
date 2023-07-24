@@ -1,7 +1,17 @@
+// Function to convert URLs of a specific format
+function convertUrl(url) {
+    const match = url.match(/@[^\s@]*@[^\s@]*/);
+    if (match) {
+        const usernameDomain = match[0].substring(1).split('@');
+        return `https://${usernameDomain[1]}/@${usernameDomain[0]}`;
+    }
+    return url;
+}
+
 // Listen for a click on the browser action icon
 chrome.action.onClicked.addListener((tab) => {
   // Get the current URL
-  var currentUrl = tab.url;
+  var currentUrl = convertUrl(tab.url);
 
   // Get the site domain and API key from storage
   chrome.storage.local.get(['siteDomain', 'apiKey'], function(data) {
