@@ -2,4 +2,4 @@ title: Minimal theme
 logo: /assets/icon128.png
 description: Open a note or user in another misskey instance.
 show_downloads: false
-theme: minimal
+remote_theme: pages-themes/minimal@v0.2.0
