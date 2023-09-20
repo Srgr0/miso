@@ -5,6 +5,9 @@ layout: default
 # miso
 ノートやユーザーを別のMisskeyインスタンスで表示します。  
 
+## ダウンロード
+[<img alt="Chrome Web Store" src="assets/chromewebstore.png" width="30"> Chrome Web Storeからダウンロード](https://chrome.google.com/webstore/detail/miso/gomfgdhiicbpjfojpbabncloffohpbpf)
+
 ## 設定方法
 1. [Chrome Web Store](https://chrome.google.com/webstore/detail/miso/gomfgdhiicbpjfojpbabncloffohpbpf)から拡張機能をインストールします。
 2. お使いのMisskeyインスタンスで、'設定'/'API'/'アクセストークンの発行'を開きます。任意の名前を設定し、権限は全て無効にして確定します。表示されるトークンをコピーします。
