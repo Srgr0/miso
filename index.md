@@ -9,7 +9,7 @@ layout: default
 [<img alt="Chrome Web Store" src="assets/chromewebstore.png" width="30"> Chrome Web Storeからダウンロード](https://chrome.google.com/webstore/detail/miso/gomfgdhiicbpjfojpbabncloffohpbpf)
 
 ## 設定方法
-1. [Chrome Web Store](https://chrome.google.com/webstore/detail/miso/gomfgdhiicbpjfojpbabncloffohpbpf)から拡張機能をインストールします。
+1. [Chrome Web Store](https://chrome.google.com/webstore/detail/miso/gomfgdhiicbpjfojpbabncloffohpbpf) から拡張機能をインストールします。
 2. お使いのMisskeyインスタンスで、'設定'/'API'/'アクセストークンの発行'を開きます。任意の名前を設定し、権限は全て無効にして確定します。表示されるトークンをコピーします。
 3. chrome://extensions/を開き、misoの'詳細'から'拡張機能のオプション'を開きます。siteDomainにお使いのMisskeyインスタンスのURL(ex. https://misskey.srgr0.com )を入力、API Keyに上で取得したトークンをペーストし、保存します。注意: URLは'https://'から入力してください。
 4. 任意のインスタンス(上で設定したインスタンスを除く)のノートページまたはユーザーページで、ツールバー上の拡張機能のアイコンをクリックします。お使いのMisskeyインスタンスにて、そのノートまたはユーザーのページが開きます。ヒント: 拡張機能は、デフォルトでツールバーの拡張機能ボタン内にまとめられています。拡張機能ボタン内の拡張機能の横のピンで、拡張機能をツールバー上に固定させることができます。
