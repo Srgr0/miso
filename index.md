@@ -6,7 +6,8 @@ layout: default
 ノートやユーザーを別のMisskeyインスタンスで表示します。  
 
 ## ダウンロード
-[<img alt="Chrome Web Store" src="assets/chromewebstore.png" width="30"> Chrome Web Storeからダウンロード](https://chrome.google.com/webstore/detail/miso/gomfgdhiicbpjfojpbabncloffohpbpf)
+[<img alt="Chrome Web Store" src="assets/chromewebstore.png" width="30"> Chrome Web Store からダウンロード](https://chrome.google.com/webstore/detail/miso/gomfgdhiicbpjfojpbabncloffohpbpf)  
+~~[<img alt="Firefox Browser" src="assets/firefoxbrowser.png" width="30"> Firefox Browser Add-ons からダウンロード]()~~ Coming soon...
 
 ## 設定方法 for Chrome
 1. Chrome Web Store から拡張機能をインストールします。
