@@ -1,31 +1,36 @@
-// Listen for a click on the browser action icon
-chrome.action.onClicked.addListener((tab) => {
-    // Get the site domain and API key from chrome.storage
-    chrome.storage.local.get(['siteDomain', 'apiKey'], function(data) {
-        var siteDomain = data.siteDomain;
-        var apiKey = data.apiKey;
+// Create a right-click context menu item for links
+chrome.contextMenus.create({
+    id: 'miso-right-click',
+    title: 'Open in your misskey instance',
+    contexts: ['link']
+});
 
-        // Parse the current URL
-        const currentUrl = new URL(tab.url);
-        const currentDomain = currentUrl.hostname;
+// Function to handle the main logic
+function handleUrl(queryUrl) {
+    // Get the user instance's domain and API key from chrome.storage
+    chrome.storage.local.get(['userInstanceDomain', 'userInstanceApiKey'], function(data) {
+        var userInstanceDomain = data.userInstanceDomain;
+        var userInstanceApiKey = data.userInstanceApiKey;
+
+        // Parse the URL
+        const queryDomain = queryUrl.hostname;
         // 0:,1:notes,2:xxxxxx or 0:,1:@srgr0
-        const currentPath = currentUrl.pathname.split("/");
+        const queryPath = queryUrl.pathname.split("/");
+
         // Check the path of the URL
-        if (currentPath[1] === "notes") {
-            if (currentDomain !== siteDomain) {
-                // Make a POST request to the site domain
-                fetch(`${siteDomain}/api/ap/show`, {
+        if (queryPath[1] === "notes") {
+            if (queryDomain !== userInstanceDomain) {
+                fetch(`${userInstanceDomain}/api/ap/show`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({uri: tab.url, i: apiKey}),
+                    body: JSON.stringify({uri: queryUrl, i: userInstanceApiKey}),
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.type === 'Note') {
-                        // Open a new tab with the note's URL
-                        var noteUrl = `${siteDomain}/notes/${data.object.id}`;
+                        var noteUrl = `${userInstanceDomain}/notes/${data.object.id}`;
                         chrome.tabs.create({ url: noteUrl });
                     }
                 })
@@ -34,18 +39,32 @@ chrome.action.onClicked.addListener((tab) => {
                 });
             }
         } else {
-            if (currentDomain !== siteDomain) {
+            if (queryDomain !== userInstanceDomain) {
                 // Check if the username has a domain
                 // 0:,1:srgr0,2:misskey.srgr0.com or 0:,1:srgr0
-                const userParts = currentPath[1].split("@");
+                const userParts = queryPath[1].split("@");
                 var userUrl;
                 if (userParts.length === 3) {
-                    userUrl = `${siteDomain}/@${userParts[1]}@${userParts[2]}`;
+                    userUrl = `${userInstanceDomain}/@${userParts[1]}@${userParts[2]}`;
                 } else {
-                    userUrl = `${siteDomain}/@${userParts[1]}@${currentDomain}`;
+                    userUrl = `${userInstanceDomain}/@${userParts[1]}@${queryDomain}`;
                 }
                 chrome.tabs.create({ url: userUrl });
             }
         }
     });
+}
+
+// Listen for a click on the browser action icon
+chrome.action.onClicked.addListener((tab) => {
+    const queryUrl = new URL(tab.url)
+    handleUrl(queryUrl);
+});
+
+// Listen for a click on the context menu item
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === 'miso-right-click') {
+        const queryUrl = new URL(info.linkUrl)
+        handleUrl(queryUrl);
+    }
 });
