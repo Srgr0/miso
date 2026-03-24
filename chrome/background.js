@@ -1,9 +1,12 @@
 // Create a right-click context menu item for links
+// This feature is planned to be implemented in the next version due to technical issues.
+/*
 chrome.contextMenus.create({
     id: 'miso-right-click',
-    title: 'Open in your misskey instance',
+    title: 'misoで開く',
     contexts: ['link']
 });
+*/
 
 // Get node software name
 async function getNodeSoftwareName(queryUrl) {
@@ -12,10 +15,7 @@ async function getNodeSoftwareName(queryUrl) {
     try {
         // Send GET request to host/.well-known/nodeinfo
         const response = await fetch(`https://${queryDomain}/.well-known/nodeinfo`, {
-            method: 'GET',
-            headers: {
-                'User-Agent': 'miso - Browser extension for misskey'
-            }
+            method: 'GET'
         });
 
         // Check if response is OK
@@ -44,10 +44,7 @@ async function getNodeSoftwareName(queryUrl) {
 
         // Send GET request to the latest version of nodeinfo URL
         const nodeInfoResponse = await fetch(latestNodeInfo.href, {
-            method: 'GET',
-            headers: {
-                'User-Agent': 'miso - Browser extension for misskey'
-            }
+            method: 'GET'
         });
 
         // Check if response is OK
@@ -119,7 +116,7 @@ function handleUrlMisskey(queryUrl) {
     });
 }
 
-// Handle url (Masodon)
+// Handle url (Mastodon)
 function handleUrlMastdon(queryUrl) {
     // Get the user instance's domain and API key from chrome.storage
     chrome.storage.local.get(['userInstanceDomain', 'userInstanceApiKey'], function(data) {
@@ -183,6 +180,8 @@ chrome.action.onClicked.addListener(async (tab) => {
 });
 
 // Listen for a click on the context menu item
+// This feature is planned to be implemented in the next version due to technical issues.
+/*
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     if (info.menuItemId === 'miso-right-click') {
         const queryUrl = new URL(info.linkUrl)
@@ -196,3 +195,4 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
         }
     }
 });
+*/
